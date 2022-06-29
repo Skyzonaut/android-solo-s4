@@ -1,0 +1,11 @@
+<resources>
+
+    <style name="Theme.Jeu.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Jeu.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.Jeu.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

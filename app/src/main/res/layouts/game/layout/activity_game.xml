@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/ColorButtonGreen">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/swordView"
+                android:layout_width="54dp"
+                android:layout_height="52dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/shieldView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/epee_classique" />
+
+            <ImageSwitcher
+                android:id="@+id/imageSwitcher"
+                android:layout_width="313dp"
+                android:layout_height="283dp"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="46dp"
+                android:layout_marginTop="44dp"
+                android:layout_marginEnd="46dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.488"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/swordView">
+
+            </ImageSwitcher>
+
+            <LinearLayout
+                android:id="@+id/eventOptionLayout"
+                android:layout_width="320dp"
+                android:layout_height="277dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="19dp"
+                android:layout_marginEnd="16dp"
+                android:dividerPadding="10dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/eventTextView" />
+
+            <TextView
+                android:id="@+id/eventTextView"
+                android:layout_width="329dp"
+                android:layout_height="54dp"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="23dp"
+                android:textAlignment="center"
+                android:textAllCaps="false"
+                android:textColor="@color/eventTextColor"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.466"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageSwitcher" />
+
+            <ImageView
+                android:id="@+id/shieldView"
+                android:layout_width="54dp"
+                android:layout_height="52dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/bouclier_classique_final" />
+
+            <ImageView
+                android:id="@+id/keyView"
+                android:layout_width="25dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/swordView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/clef" />
+
+            <ImageView
+                android:id="@+id/appleView"
+                android:layout_width="22dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/keyView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/pomme" />
+
+            <TextView
+                android:id="@+id/keyCount"
+                android:layout_width="25dp"
+                android:layout_height="19dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="3dp"
+                android:textAlignment="center"
+                android:textColor="@color/eventTextColor"
+                app:layout_constraintStart_toEndOf="@+id/swordView"
+                app:layout_constraintTop_toBottomOf="@+id/keyView" />
+
+            <TextView
+                android:id="@+id/appleCount"
+                android:layout_width="22dp"
+                android:layout_height="20dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="3dp"
+                android:textAlignment="center"
+                android:textColor="@color/eventTextColor"
+                app:layout_constraintStart_toEndOf="@+id/keyCount"
+                app:layout_constraintTop_toBottomOf="@+id/appleView" />
+
+            <ImageView
+                android:id="@+id/heartView"
+                android:layout_width="47dp"
+                android:layout_height="43dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/coeur"
+                app:layout_constraintStart_toEndOf="@+id/appleView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/lifeCount"
+                android:layout_width="47dp"
+                android:layout_height="41dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="18dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/appleView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/potion1View"
+                android:layout_width="46dp"
+                android:layout_height="44dp"
+                android:layout_marginStart="4dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/goldView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/potion2View"
+                android:layout_width="23dp"
+                android:layout_height="24dp"
+                android:layout_marginStart="36dp"
+                android:layout_marginTop="44dp"
+                app:layout_constraintStart_toEndOf="@+id/goldView"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/goldView"
+                android:layout_width="40dp"
+                android:layout_height="33dp"
+                android:layout_marginStart="3dp"
+                android:layout_marginTop="16dp"
+                app:layout_constraintStart_toEndOf="@+id/heartView"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/gold" />
+
+            <TextView
+                android:id="@+id/goldCount"
+                android:layout_width="37dp"
+                android:layout_height="29dp"
+                android:layout_marginStart="3dp"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="20sp"
+                app:layout_constraintStart_toEndOf="@+id/heartView"
+                app:layout_constraintTop_toBottomOf="@+id/goldView" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</LinearLayout>

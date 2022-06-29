@@ -1,0 +1,50 @@
+{
+    "stuff" : [
+    {
+      "name": "épee classique",
+      "img": "epee_classique",
+      "attack": 5
+    },
+    {
+      "name": "épee légendaire",
+      "img": "epee_legendaire_final",
+      "attack": 10
+    },
+    {
+      "name": "épee maudite",
+      "img": "epee_maudite_final",
+      "attack": 1
+    },
+    {
+      "name": "bouclier classique",
+      "img": "bouclier_classique_final",
+      "defense": 5
+    },
+    {
+      "name": "bouclier légendaire",
+      "img": "bouclier_legendaire_final",
+      "defense": 10
+    },
+    {
+      "name": "bouclier maudit",
+      "img": "bouclier_maudit_final",
+      "defense": 2
+    },
+    {
+      "name": "pomme",
+      "img": "pomme"
+    },
+    {
+      "name": "clef",
+      "img": "clef"
+    },
+    {
+      "name": "potion",
+      "img": "potion"
+    },
+    {
+      "name": "gold",
+      "img": "gold"
+    }
+  ]
+}

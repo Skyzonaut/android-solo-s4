@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Jeu</string>
+    <string name="welcome_message">Bienvenue!</string>
+    <string name="LaunchGameButton">Lancer le jeu</string>
+</resources>

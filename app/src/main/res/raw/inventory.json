@@ -1,0 +1,35 @@
+{
+  "stuff": {
+    "sword": {
+      "name": "épee classique",
+      "img": "epee_classique",
+      "attack": 5
+    },
+    "shield": {
+      "name": "bouclier légendaire",
+      "img": "bouclier_classique_final",
+      "defense": 5
+    },
+    "pomme": {
+      "name": "pomme",
+      "img": "pomme",
+      "quantity": 1
+    },
+    "clef": {
+      "name": "clef",
+      "img": "clef",
+      "quantity": 0
+    },
+    "potion": {
+      "name": "potion",
+      "img": "potion",
+      "quantity": 0
+    },
+    "gold": {
+      "name": "gold",
+      "img": "gold",
+      "quantity": 5
+    },
+    "life": 10
+  }
+}
