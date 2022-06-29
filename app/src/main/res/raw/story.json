@@ -1,0 +1,11 @@
+{
+  "passedDoor": 0,
+  "hasPassedACorridor": 0,
+  "hasTriedToOpenChest": 0,
+  "hasChestKey": 0,
+  "chillingInAnEmptyRoom": 0,
+  "hasTriedAKey": 0,
+  "buying": 0,
+  "inAFight": 0,
+  "ennemyLife": 0
+}

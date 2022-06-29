@@ -1,0 +1,801 @@
+[
+  {
+    "name": "porte",
+    "img": "porte_final",
+    "text": "Vous vous retrouvez devant une porte.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {
+          "nameOfEnding": "All",
+          "pointToAdd": 0
+        },
+        "valueToChange": ["passedDoor", "hasPassedACorridor"]
+      },
+      {
+        "optionName": "franchir",
+        "text": "Franchir la porte",
+        "nextCard": ["corridor"],
+        "endProgress": {
+            "nameOfEnding": "All",
+            "pointToAdd": 1
+        },
+        "valueToChange": ["passedDoor", "hasPassedACorridor"]
+      }
+    ],
+    "conditions": {
+      "hasPassedACorridor": 1
+    }
+  },
+  {
+    "name": "coffre-ouvert",
+    "img": "coffre_ouvert_final",
+    "text": "Vous trouvez un coffre ouvert.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "fouiller",
+        "text": "Fouiller",
+        "optionType": "loot",
+        "nextCard": [
+          "corridor"
+        ],
+        "endProgress": {},
+        "valueToChange": [],
+        "loot": {
+          "pomme": {
+            "chance": 10,
+            "stuffItem": "pomme",
+            "addValue": 1
+          },
+          "clef": {
+            "chance": 3,
+            "stuffItem": "clef",
+            "addValue": 1
+          },
+          "épee classique": {
+            "chance": 3,
+            "stuffItem": "sword"
+          },
+          "bouclier classique": {
+            "chance": 3,
+            "stuffItem": "shield"
+          },
+          "épee maudite": {
+            "chance": 1,
+            "stuffItem": "sword"
+          },
+          "bouclier maudit": {
+            "chance": 1,
+            "stuffItem": "shield"
+          },
+          "potion": {
+            "chance": 2,
+            "stuffItem": "potion"
+          },
+          "gold": {
+            "chance": 2,
+            "stuffItem": "gold",
+            "addValue": 4
+          }
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
+    "conditions": {
+      "hasPassedACorridor": 1
+    }
+  },
+  {
+    "name": "coffre-fermé",
+    "img": "coffre_ferme_final",
+    "text": "Vous trouvez un coffre qui semble fermé.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "forcer",
+        "text": "Vous donnez un coup d'épée pour tenter de le forcer",
+        "nextCard": ["coffre-ouvert-force", "coffre-fermé-echec"],
+        "endProgress": {},
+        "valueToChange": ["hasTriedToOpenChest"]
+      },
+      {
+        "optionName": "Utiliser une clé",
+        "text": "Vous essayez l'une des clés que vous aviez trouvé",
+        "nextCard": ["coffre-ouvert-force", "coffre-mauvaise-clef"],
+        "endProgress": {},
+        "valueToChange": ["hasTriedToOpenChest", "hasTriedAKey"],
+        "inventoryRequirements" : {
+          "clef": ">0"
+        },
+        "inventoryChanges": {
+          "clef": -1
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor"]
+      }
+    ],
+    "conditions": {
+      "hasPassedACorridor": 1
+    }
+  },
+  {
+    "name": "coffre-mauvaise-clef",
+    "img": "coffre_ferme_final",
+    "text": "Vous n'avez pas les bonnes clefs.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "forcer",
+        "text": "Vous donnez un coup d'épée pour tenter de le forcer",
+        "nextCard": ["coffre-ouvert-force", "coffre-fermé-echec"],
+        "endProgress": {},
+        "valueToChange": ["hasTriedToOpenChest"],
+        "inventoryChanges": {
+          "clef": 1
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor"],
+        "inventoryChanges": {
+          "clef": 1
+        }
+      }
+    ],
+      "conditions": {
+        "hasPassedACorridor": 1,
+        "hasTriedAKey": 1
+    }
+  },
+  {
+    "name": "coffre-ouvert-force",
+    "img": "coffre_ouvert_final",
+    "text": "Vous avez ouvert le coffre.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "fouiller",
+        "text": "Fouiller",
+        "optionType": "loot",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "loot": {
+          "pomme": {
+            "chance": 10,
+            "stuffItem": "pomme",
+            "addValue": 1
+          },
+          "clef": {
+            "chance": 3,
+            "stuffItem": "clef",
+            "addValue": 1
+          },
+          "épee classique": {
+            "chance": 3,
+            "stuffItem": "sword"
+          },
+          "bouclier classique": {
+            "chance": 3,
+            "stuffItem": "shield"
+          },
+          "épee légendaire": {
+            "chance": 1,
+            "stuffItem": "sword"
+          },
+          "bouclier légendaire": {
+            "chance": 1,
+            "stuffItem": "shield"
+          },
+          "potion": {
+            "chance": 2,
+            "stuffItem": "potion"
+          },
+          "gold": {
+            "chance": 2,
+            "stuffItem": "gold",
+            "addValue": 7
+          }
+        },
+        "valueToChange": ["hasPassedACorridor", "hasTriedToOpenChest"]
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor"]
+      }
+    ],
+    "conditions": {
+      "hasTriedToOpenChest": 1}
+  },
+  {
+    "name": "coffre-fermé-echec",
+    "img": "coffre_ferme_final",
+    "text": "Vous n'avez pas réussi à ouvrir le coffre.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "forcer",
+        "text": "Vous donnez un coup d'épée pour tenter de le forcer",
+        "nextCard": ["coffre-ouvert-force", "coffre-fermé-echec-final"],
+        "endProgress": {},
+        "valueToChange": []
+      },
+      {
+        "optionName": "Utiliser une clé",
+        "text": "Vous essayez l'une des clés que vous aviez trouvé",
+        "nextCard": ["coffre-ouvert-force", "coffre-mauvaise-clef"],
+        "endProgress": {},
+        "valueToChange": ["hasTriedAKey"],
+        "inventoryRequirements" : {
+          "clef": ">0"
+        },
+        "inventoryChanges": {
+          "clef": -1
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "hasTriedToOpenChest"]
+      }
+    ],
+    "conditions": {
+      "hasTriedToOpenChest": 1}
+  },
+  {
+    "name": "coffre-fermé-echec-final",
+    "img": "coffre_ferme_final",
+    "text": "Le coffre est trop solide pour être forcé.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "Utiliser une clé",
+        "text": "Vous essayez l'une des clés que vous aviez trouvé",
+        "endProgress": {},
+        "nextCard": ["corridor", "coffre-mauvaise-clef"],
+        "valueToChange": ["hasTriedToOpenChest", "hasTriedAKey"],
+        "inventoryRequirements" : {
+          "clef": ">0"
+        },
+        "inventoryChanges": {
+          "clef": -1
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "hasTriedToOpenChest"]
+      }
+    ],
+    "conditions": {
+      "hasTriedToOpenChest": 1
+    }
+  },
+  {
+    "name": "cadavre",
+    "img": "cadavre_final",
+    "text": "Vous tomber sur un cadavre.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "fouiller",
+        "text": "Fouiller",
+        "optionType": "loot",
+        "nextCard": [],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor"],
+        "loot": {
+          "clef": {
+            "chance": 5,
+            "stuffItem": "clef",
+            "addValue": 1
+          },
+          "épee classique": {
+            "chance": 5,
+            "stuffItem": "sword"
+          },
+          "bouclier classique": {
+            "chance": 5,
+            "stuffItem": "shield"
+          },
+          "épee légendaire": {
+            "chance": 2,
+            "stuffItem": "sword"
+          },
+          "épee maudite": {
+            "chance": 2,
+            "stuffItem": "sword"
+          },
+          "bouclier légendaire": {
+            "chance": 2,
+            "stuffItem": "shield"
+          },
+          "bouclier maudit": {
+            "chance": 2,
+            "stuffItem": "shield"
+          },
+          "potion": {
+            "chance": 2,
+            "stuffItem": "potion"
+          },
+          "gold": {
+            "chance": 2,
+            "stuffItem": "gold",
+            "addValue": 3
+          }
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": [],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor"]
+      }
+    ],
+    "conditions": {
+      "hasPassedACorridor": 1
+    }
+  },
+  {
+    "name": "corridor",
+    "img": "couloir_final",
+    "text": "Vous êtes dans un couloir, où aller vous ?",
+    "type": "",
+    "options": [
+      {
+        "optionName": "gauche",
+        "text": "Gauche",
+        "nextCard": [],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "chillingInAnEmptyRoom:0","inAFight:0"]
+      },
+      {
+        "optionName": "droite",
+        "text": "Droite",
+        "nextCard": [],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "chillingInAnEmptyRoom:0","inAFight:0"]
+      },
+      {
+        "optionName": "tout-droit",
+        "text": "Tout droit",
+        "nextCard": [],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "chillingInAnEmptyRoom:0","inAFight:0"]
+      }
+    ],
+    "conditions": {
+    }
+  },
+  {
+    "name": "salle-vide",
+    "img": "sale_vide_final",
+    "text": "Vous tombez sur une salle vide, avec deux sorties.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "gauche",
+        "text": "Prendre la sortie de gauche",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": []
+      },
+      {
+        "optionName": "droite",
+        "text": "Prendre la sortie de droite",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": []
+      },
+      {
+        "optionName": "se reposer",
+        "text": "Vous reposer quelques minutes pour reprendre des forces, à vos risques et périls.",
+        "nextCard": ["salle-vide-2"],
+        "endProgress": {},
+        "valueToChange": ["chillingInAnEmptyRoom"]
+      }
+    ],
+    "conditions": {
+      "chillingInAnEmptyRoom": 0
+    }
+  },
+  {
+    "name": "salle-vide-2",
+    "img": "sale_vide_final",
+    "text": "20 minutes sont passées, il serait peut-être temps de reprendre votre chemin ?",
+    "type": "",
+    "options": [
+      {
+        "optionName": "gauche",
+        "text": "Prendre la sortie de gauche",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["chillingInAnEmptyRoom"]
+      },
+      {
+        "optionName": "droite",
+        "text": "Prendre la sortie de droite",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["chillingInAnEmptyRoom"]
+      },
+      {
+        "optionName": "se reposer",
+        "text": "Encore 5 minutes maman...",
+        "nextCard": [
+          "salle-vide-finale"
+        ],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
+    "conditions": {
+      "chillingInAnEmptyRoom": 1
+    }
+  },
+  {
+    "name": "salle-vide-finale",
+    "img": "sale_vide_final",
+    "text": "Le temps presse, il faut partir, la zone devient dangereuse!",
+    "type": "",
+    "options": [
+      {
+        "optionName": "gauche",
+        "text": "Prendre la sortie de gauche",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["chillingInAnEmptyRoom"]
+      },
+      {
+        "optionName": "droite",
+        "text": "Prendre la sortie de droite",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["chillingInAnEmptyRoom"]
+      }
+    ],
+    "conditions": {
+      "chillingInAnEmptyRoom": 1
+    }
+  },
+  {
+    "name": "vendeur",
+    "img": "vendeur_etrange_final",
+    "text": "Vous rencontrez une vendeur étrange...",
+    "type": "",
+    "options": [
+      {
+        "optionName": "acheter",
+        "text": "Voir son étalage",
+        "nextCard": ["achat-vendeur"],
+        "endProgress": {},
+        "valueToChange": ["buying"]
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor"]
+      }
+    ],
+    "conditions": {
+      "hasPassedACorridor": 1
+    }
+  },
+  {
+    "name": "achat-vendeur",
+    "img": "vendeur_etrange_final",
+    "text": "Voici ce que vous pouvez acheter :",
+    "type": "",
+    "options": [
+      {
+        "optionName": "epee-classique",
+        "text": "Épée légendaire: 5 Po",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "buying"],
+        "inventoryRequirements" : {
+          "gold": ">4"
+        },
+        "inventoryChanges": {
+          "gold": -5,
+          "sword": "épee légendaire"
+        }
+      },
+      {
+        "optionName": "bouclier-classique",
+        "text": "Bouclier légendaire: 4 Po",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "buying"],
+        "inventoryRequirements" : {
+          "gold": ">3"
+        },
+        "inventoryChanges": {
+          "clef": -5,
+          "sword": "bouclier légendaire"
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Ne rien faire",
+        "nextCard": [],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "buying"],
+        "inventoryRequirements" : {
+          "gold": ">0"
+        }
+      },
+      {
+        "optionName": "no-gold",
+        "text": "Vous ne pouvez rien acheter",
+        "nextCard": [],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor", "buying"],
+        "inventoryRequirements" : {
+          "gold": "<1"
+        }
+      }
+    ],
+    "conditions": {
+      "buying": 1
+    }
+  },
+  {
+    "name": "ennemi",
+    "img": "rencontrer_ennemi_final",
+    "text": "Vous rencontrez un ennemi",
+    "type": "",
+    "options": [
+      {
+        "optionName": "attaquer",
+        "text": "L'attaquer",
+        "nextCard": ["ennemi-attaque-choix"],
+        "endProgress": {},
+        "valueToChange": ["inAFight", "hasPassedACorridor"]
+      },
+      {
+        "optionName": "fuir",
+        "text": "Fuir",
+        "nextCard": ["ennemi-fuite-rate","corridor","ennemi-fuite-rate"],
+        "endProgress": {},
+        "valueToChange": ["inAFight","hasPassedACorridor"]
+      }
+    ]
+  },
+  {
+    "name": "ennemi-fuite-rate",
+    "img": "rencontrer_ennemi_final",
+    "text": "L'ennemi vous a rattrapé, vous devez vous battre",
+    "type": "no-playable",
+    "nextCard": ["ennemi-attaque-choix"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "ennemi-pret-defense",
+    "img": "rencontrer_ennemi_final",
+    "text": "L'ennemi se remet, que faites vous ?",
+    "options": [
+      {
+        "optionName": "attaquer",
+        "text": "L'attaquer",
+        "nextCard": ["choix-attaque"],
+        "endProgress": {},
+        "valueToChange": ["inAFight"]
+      },
+      {
+        "optionName": "fuir",
+        "text": "Fuir",
+        "nextCard": ["ennemi-fuite-rate","corridor"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "ennemi-pret-attaque",
+    "img": "rencontrer_ennemi_final",
+    "text": "L'ennemi est face à vous, prêt à attaquer",
+    "type": "no-playable",
+    "nextCard": ["ennemi-defense-choix"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "ennemi-attaque-choix",
+    "img": "attaque_final",
+    "text": "Comment l'attaquez vous ?",
+    "type": "",
+    "options": [
+      {
+        "optionName": "flanc",
+        "text": "L'attaquer avec le fil de votre épée",
+        "nextCard": ["ennemi-attack-success", "ennemi-attack-missed"],
+        "endProgress": {},
+        "valueToChange": []
+      },
+      {
+        "optionName": "pointe",
+        "text": "L'attaquer avec la pointe de votre épée",
+        "nextCard": ["ennemi-attack-success", "ennemi-attack-missed"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "ennemi-attack-missed",
+    "img": "rencontrer_ennemi_final",
+    "text": "Vous avez raté votre coup",
+    "type": "no-playable",
+    "nextCard": ["ennemi-pret-attaque"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "ennemi-attack-success",
+    "img": "rencontrer_ennemi_final",
+    "text": "Vous avez touché l'ennemi",
+    "type": "no-playable",
+    "nextCard": ["ennemi-pret-attaque"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "ennemi-defense-choix",
+    "img": "defense_final",
+    "text": "L'ennemi vous attaque.",
+    "type": "",
+    "options": [
+      {
+        "optionName": "esquiver",
+        "text": "Tenter d'esquiver",
+        "nextCard": ["defense-esquiver-success", "defense-esquiver-echec"],
+        "endProgress": {},
+        "valueToChange": []
+      },
+      {
+        "optionName": "Parer",
+        "text": "Tenter de parer avec votre bouclier",
+        "nextCard": ["defense-parer-success", "defense-parer-echec"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "defense-parer-success",
+    "img": "defense_final",
+    "text": "Vous avez paré son attaque",
+    "type": "no-playable",
+    "nextCard": ["ennemi-pret-defense"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "defense-parer-echec",
+    "img": "defense_final",
+    "text": "Vous n'avez paré son attaque",
+    "type": "no-playable",
+    "nextCard": ["ennemi-pret-defense"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "defense-esquiver-success",
+    "img": "defense_final",
+    "text": "Vous avez esquivé son attaque",
+    "type": "no-playable",
+    "nextCard": ["ennemi-pret-defense"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "defense-esquiver-echec",
+    "img": "defense_final",
+    "text": "Vous n'avez esquivé son attaque",
+    "type": "no-playable",
+    "nextCard": ["ennemi-pret-defense"],
+    "conditions": {
+      "inAFight": 1
+    }
+  },
+  {
+    "name": "defense-esquiver-echec",
+    "img": "defense_final",
+    "text": "Vous n'avez esquivé son attaque",
+    "type": "loot",
+    "nextCard": ["corridor"],
+    "options": [
+      {
+        "optionName": "fouiller",
+        "text": "Fouiller son cadavre",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor:0"],
+        "loot": {
+          "clef": {
+            "chance": 1,
+            "stuffItem": "clef",
+            "addValue": 1
+          },
+          "épee légendaire": {
+            "chance": 2,
+            "stuffItem": "sword"
+          },
+          "épee maudite": {
+            "chance": 1,
+            "stuffItem": "sword"
+          },
+          "bouclier légendaire": {
+            "chance": 2,
+            "stuffItem": "shield"
+          },
+          "bouclier maudit": {
+            "chance": 1,
+            "stuffItem": "shield"
+          },
+          "gold": {
+            "chance": 1,
+            "stuffItem": "gold",
+            "addValue": 30
+          }
+        }
+      },
+      {
+        "optionName": "rien",
+        "text": "Partir",
+        "nextCard": ["corridor"],
+        "endProgress": {},
+        "valueToChange": ["hasPassedACorridor:0"]
+      }
+    ],
+    "conditions": {
+      "ennemyLife": 0,
+      "inAFight": 1
+    }
+  }
+]
