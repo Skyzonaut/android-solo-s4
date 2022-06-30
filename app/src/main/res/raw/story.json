@@ -7,5 +7,12 @@
   "hasTriedAKey": 0,
   "buying": 0,
   "inAFight": 0,
-  "ennemyLife": 0
+  "ennemyLife": 20,
+  "life": 20,
+  "alive": 1,
+  "ennemyAttack": 8,
+  "ennemyDefense": 2,
+  "killedAnEnnemy": 0,
+  "tour": 0,
+  "fin": 0
 }

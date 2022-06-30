@@ -54,13 +54,13 @@ public class GameActivity extends AppCompatActivity {
 
         this.inventory = this.initializeInventory();
 
-        setupInventoryBar();
-
-        setupImageSwitch();
-
         this.eventsList = new EventsList(this);
 
         this.story = new Story(this);
+
+        setupInventoryBar();
+
+        setupImageSwitch();
 
         initializeEvent();
     }
@@ -109,7 +109,7 @@ public class GameActivity extends AppCompatActivity {
                 potion2View.setImageResource(getResources().getIdentifier(potion.getString("img"), "drawable", getPackageName()));
             }
 
-            int life = inventory.getLife();
+            int life = story.getEventCondition("life");
             TextView lifeCount = findViewById(R.id.lifeCount);
             lifeCount.setText(String.valueOf(life));
 
@@ -156,15 +156,40 @@ public class GameActivity extends AppCompatActivity {
      *
      */
     private void nextEvent() {
+        this.story.setCondition("tour", this.story.getEventCondition("tour")+1);
+        if (this.story.getEventCondition("tour") >= 30) {
+            nextEventByName("fin");
+        }
+        if(!checkLife()) {
+            nextEventByName("mort");
+        } else {
+            // Model
+            getNextEventJsonObject();
+            // UI
+            updateEventText();
+            updateImageSwitcher();
+            displayChoice();
+        }
+
+    }
+
+    private void nextEventByName(String eventName) {
 
         // Model
-        getNextEventJsonObject();
+        currentEvent = this.eventsList.getByName(eventName);
         // UI
         updateEventText();
         updateImageSwitcher();
         displayChoice();
     }
 
+    private boolean checkLife() {
+        if (story.getEventCondition("life") <= 0) {
+            return false;
+        } else {
+            return true;
+        }
+    }
 
     private void getFirstEventJsonObject() {
         Random random = new Random();
@@ -203,7 +228,7 @@ public class GameActivity extends AppCompatActivity {
             for (int i = 0; i < nextCards.length(); i++)
             {
                 nextCardsArray.add(nextCards.getString(i));
-                Log.d("NEXT-CARDS", nextCards.getString(i));
+//                Log.d("NEXT-CARDS", nextCards.getString(i));
             }
             if (nextCardsArray.size() == 0)
             {
@@ -266,16 +291,28 @@ public class GameActivity extends AppCompatActivity {
         catch (JSONException jse) {
             jse.printStackTrace();
         }
+
+//        if(this.currentEvent.getType() != null && this.currentEvent.getType().equals("no-playable")) {
+//            try {
+//                Thread.sleep(1000);
+//            } catch (InterruptedException e) {
+//                e.printStackTrace();
+//            }
+//        }
     }
 
     /**
      *
      */
     private boolean checkEventStoryCondition(Event event) {
-        Log.d("CHK-EVENT", event.toString());
+//        Log.d("CHK-EVENT", event.toString());
         boolean canLaunch = true;
         JSONObject eventConditions = event.getConditions();
         if (eventConditions != null) {
+            Log.d("ENNEMY", story.toString());
+            Log.d("ENNEMY", event.toString());
+            Log.d("ENNEMY", eventConditions.toString());
+            Log.d("ENNEMY", "--------------------");
             Iterator<String> conditionIterator = eventConditions.keys();
 
             while (conditionIterator.hasNext() && canLaunch) {
@@ -289,7 +326,7 @@ public class GameActivity extends AppCompatActivity {
                 }
             }
         }
-        Log.d("CHK-EVENT", String.valueOf(canLaunch));
+//        Log.d("CHK-EVENT", String.valueOf(canLaunch));
         return canLaunch;
     }
 
@@ -315,25 +352,17 @@ public class GameActivity extends AppCompatActivity {
     private void displayChoice() {
 
         JSONArray options = currentEvent.getOptions();
-        if (currentEvent.getType() != null && currentEvent.getType().equals("no-playable")) {
-            this.nextEvent();
-            // TODO le sleep se fait après le click et ne lance pas le prochain event
-        }
-        else
-        {
-            for (int i = 0; i < options.length(); i++) {
-                try {
-                    JSONObject option = (JSONObject) options.get(i);
-                    if (checkOptionConditions(option)) {
-                        createOneChoiceButton(option.getString("text"), i, option);
-                    }
-                }
-                catch (JSONException e) {
-                    e.printStackTrace();
+        for (int i = 0; i < options.length(); i++) {
+            try {
+                JSONObject option = (JSONObject) options.get(i);
+                if (checkOptionConditions(option)) {
+                    createOneChoiceButton(option.getString("text"), i, option);
                 }
             }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
         }
-
     }
 
     private boolean checkOptionConditions(JSONObject option) {
@@ -405,18 +434,29 @@ public class GameActivity extends AppCompatActivity {
                 choiceLayout.removeAllViews();
                 try
                 {
-                    story.updateStory(option.getJSONArray("valueToChange"));
+                    if (option.getString("optionName").equals("!END!")) {
+                        finish();
+                        startActivity(getIntent());
+                    }
+                    // TODO no value for name
+                    // TODO no value for nextCard
+                    else
+                    {
+                        story.updateStory(option.getJSONArray("valueToChange"), inventory);
 
-                    updateInventory(option);
+                        updateInventory(option);
 
-                    setupInventoryBar();
+                        setupInventoryBar();
+                    }
                 }
                 catch (JSONException jse)
                 {
                     jse.printStackTrace();
                 }
                 choosenOption = option;
+
                 nextEvent();
+
             }
         });
     }

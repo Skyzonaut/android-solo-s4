@@ -27,7 +27,9 @@
       }
     ],
     "conditions": {
-      "hasPassedACorridor": 1
+      "hasPassedACorridor": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -92,7 +94,9 @@
       }
     ],
     "conditions": {
-      "hasPassedACorridor": 1
+      "hasPassedACorridor": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -130,7 +134,9 @@
       }
     ],
     "conditions": {
-      "hasPassedACorridor": 1
+      "hasPassedACorridor": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -162,7 +168,9 @@
     ],
       "conditions": {
         "hasPassedACorridor": 1,
-        "hasTriedAKey": 1
+        "hasTriedAKey": 1,
+        "inAFight": 0,
+        "alive": 1
     }
   },
   {
@@ -225,7 +233,10 @@
       }
     ],
     "conditions": {
-      "hasTriedToOpenChest": 1}
+      "hasTriedToOpenChest": 1,
+      "inAFight": 0,
+      "alive": 1
+    }
   },
   {
     "name": "coffre-fermé-echec",
@@ -262,7 +273,10 @@
       }
     ],
     "conditions": {
-      "hasTriedToOpenChest": 1}
+      "hasTriedToOpenChest": 1,
+      "inAFight": 0,
+      "alive": 1
+    }
   },
   {
     "name": "coffre-fermé-echec-final",
@@ -292,7 +306,9 @@
       }
     ],
     "conditions": {
-      "hasTriedToOpenChest": 1
+      "hasTriedToOpenChest": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -358,7 +374,9 @@
       }
     ],
     "conditions": {
-      "hasPassedACorridor": 1
+      "hasPassedACorridor": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -390,6 +408,8 @@
       }
     ],
     "conditions": {
+    "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -421,7 +441,9 @@
       }
     ],
     "conditions": {
-      "chillingInAnEmptyRoom": 0
+      "chillingInAnEmptyRoom": 0,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -455,7 +477,9 @@
       }
     ],
     "conditions": {
-      "chillingInAnEmptyRoom": 1
+      "chillingInAnEmptyRoom": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -480,7 +504,9 @@
       }
     ],
     "conditions": {
-      "chillingInAnEmptyRoom": 1
+      "chillingInAnEmptyRoom": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -505,7 +531,9 @@
       }
     ],
     "conditions": {
-      "hasPassedACorridor": 1
+      "hasPassedACorridor": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -525,7 +553,7 @@
         },
         "inventoryChanges": {
           "gold": -5,
-          "sword": "épee légendaire"
+          "sword": "épee classique"
         }
       },
       {
@@ -539,7 +567,7 @@
         },
         "inventoryChanges": {
           "clef": -5,
-          "sword": "bouclier légendaire"
+          "sword": "bouclier classique"
         }
       },
       {
@@ -564,7 +592,9 @@
       }
     ],
     "conditions": {
-      "buying": 1
+      "buying": 1,
+      "inAFight": 0,
+      "alive": 1
     }
   },
   {
@@ -593,10 +623,20 @@
     "name": "ennemi-fuite-rate",
     "img": "rencontrer_ennemi_final",
     "text": "L'ennemi vous a rattrapé, vous devez vous battre",
-    "type": "no-playable",
-    "nextCard": ["ennemi-attaque-choix"],
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-attaque-choix"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
@@ -607,9 +647,9 @@
       {
         "optionName": "attaquer",
         "text": "L'attaquer",
-        "nextCard": ["choix-attaque"],
+        "nextCard": ["ennemi-attaque-choix"],
         "endProgress": {},
-        "valueToChange": ["inAFight"]
+        "valueToChange": []
       },
       {
         "optionName": "fuir",
@@ -620,17 +660,29 @@
       }
     ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
     "name": "ennemi-pret-attaque",
     "img": "rencontrer_ennemi_final",
     "text": "L'ennemi est face à vous, prêt à attaquer",
-    "type": "no-playable",
-    "nextCard": ["ennemi-defense-choix"],
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-defense-choix"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
@@ -655,27 +707,49 @@
       }
     ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
     "name": "ennemi-attack-missed",
     "img": "rencontrer_ennemi_final",
     "text": "Vous avez raté votre coup",
-    "type": "no-playable",
-    "nextCard": ["ennemi-pret-attaque"],
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-pret-attaque"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
     "name": "ennemi-attack-success",
     "img": "rencontrer_ennemi_final",
     "text": "Vous avez touché l'ennemi",
-    "type": "no-playable",
-    "nextCard": ["ennemi-pret-attaque"],
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-pret-attaque","ennemi-mort"],
+        "endProgress": {},
+        "valueToChange": ["ennemyLife:?sword"]
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
@@ -700,62 +774,105 @@
       }
     ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
     "name": "defense-parer-success",
     "img": "defense_final",
     "text": "Vous avez paré son attaque",
-    "type": "no-playable",
-    "nextCard": ["ennemi-pret-defense"],
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-pret-defense"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
     "name": "defense-parer-echec",
     "img": "defense_final",
-    "text": "Vous n'avez paré son attaque",
-    "type": "no-playable",
-    "nextCard": ["ennemi-pret-defense"],
+    "text": "Vous n'avez pas paré son attaque",
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-pret-defense"],
+        "endProgress": {},
+        "valueToChange": ["life:?shield"]
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
     "name": "defense-esquiver-success",
     "img": "defense_final",
     "text": "Vous avez esquivé son attaque",
-    "type": "no-playable",
-    "nextCard": ["ennemi-pret-defense"],
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-pret-defense"],
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
     "name": "defense-esquiver-echec",
     "img": "defense_final",
-    "text": "Vous n'avez esquivé son attaque",
-    "type": "no-playable",
-    "nextCard": ["ennemi-pret-defense"],
+    "text": "Vous n'avez pas esquivé son attaque",
+    "type": "",
+    "options": [
+      {
+        "optionName": "next",
+        "text": "Suivant",
+        "nextCard": ["ennemi-pret-defense"],
+        "endProgress": {},
+        "valueToChange": ["life:?shield"]
+      }
+    ],
     "conditions": {
-      "inAFight": 1
+      "killedAnEnnemy": 0,
+      "inAFight": 1,
+      "alive": 1
     }
   },
   {
-    "name": "defense-esquiver-echec",
-    "img": "defense_final",
-    "text": "Vous n'avez esquivé son attaque",
-    "type": "loot",
+    "name": "ennemi-mort",
+    "img": "cadavre_final",
+    "text": "Vous avez vaincu l'ennemi !",
+    "type": "",
     "nextCard": ["corridor"],
     "options": [
       {
         "optionName": "fouiller",
         "text": "Fouiller son cadavre",
         "nextCard": ["corridor"],
+        "optionType": "loot",
         "endProgress": {},
-        "valueToChange": ["hasPassedACorridor:0"],
+        "valueToChange": ["hasPassedACorridor:0", "killedAnEnnemy", "inAFight"],
         "loot": {
           "clef": {
             "chance": 1,
@@ -790,12 +907,47 @@
         "text": "Partir",
         "nextCard": ["corridor"],
         "endProgress": {},
-        "valueToChange": ["hasPassedACorridor:0"]
+        "valueToChange": ["hasPassedACorridor:0", "killedAnEnnemy", "inAFight"]
       }
     ],
     "conditions": {
-      "ennemyLife": 0,
-      "inAFight": 1
+      "killedAnEnnemy": 1,
+      "inAFight": 1,
+      "alive": 1
+    }
+  },
+  {
+    "name": "mort",
+    "img": "cadavre_final",
+    "text": "Vous avez été vaincu",
+    "type": "",
+    "options": [
+      {
+        "optionName": "!END!",
+        "text": "Nouvelle partie",
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
+    "conditions": {
+      "alive": 0
+    }
+  },
+  {
+    "name": "fin",
+    "img": "fin",
+    "text": "Victoire! Vous avez trouvé la sortie",
+    "type": "",
+    "options": [
+      {
+        "optionName": "!END!",
+        "text": "Nouvelle partie",
+        "endProgress": {},
+        "valueToChange": []
+      }
+    ],
+    "conditions": {
+      "alive": 1
     }
   }
 ]

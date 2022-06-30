@@ -6,7 +6,7 @@
       "attack": 5
     },
     "shield": {
-      "name": "bouclier légendaire",
+      "name": "bouclier classique",
       "img": "bouclier_classique_final",
       "defense": 5
     },
@@ -29,7 +29,6 @@
       "name": "gold",
       "img": "gold",
       "quantity": 5
-    },
-    "life": 10
+    }
   }
 }

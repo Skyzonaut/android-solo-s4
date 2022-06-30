@@ -16,10 +16,12 @@ public class Event {
     private String eventText;
     private JSONObject conditions;
     private String type;
+    private String name;
 
     public Event(JSONObject jo) {
         this.json = jo;
         try {
+            this.name = jo.getString("name");
             this.imageName = jo.getString("img");
             this.eventText = jo.getString("text");
             this.conditions = jo.has("conditions") ? jo.getJSONObject("conditions") : null;
@@ -84,4 +86,7 @@ public class Event {
 
     public String getType() { return this.type;}
 
+    public String getName() {
+        return name;
+    }
 }

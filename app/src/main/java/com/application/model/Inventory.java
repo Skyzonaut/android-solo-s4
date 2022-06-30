@@ -2,8 +2,6 @@ package com.application.model;
 
 import android.content.Context;
 import android.util.Log;
-
-import com.application.interfaces.InterfaceModel;
 import com.application.jeu.R;
 
 import org.json.JSONArray;
@@ -19,7 +17,7 @@ import java.io.Writer;
 import java.util.Iterator;
 import java.util.stream.Stream;
 
-public class Inventory implements InterfaceModel {
+public class Inventory {
 
     private JSONArray availableStuff;
     private JSONObject inventory;
@@ -79,10 +77,6 @@ public class Inventory implements InterfaceModel {
         }
     }
 
-    @Override
-    public void notifierVue() {
-        //
-    }
 
     public JSONObject getSwordObject() {
         JSONObject sword = null;

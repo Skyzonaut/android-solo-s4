@@ -18,6 +18,7 @@ import java.io.Writer;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Random;
 
 public class Story {
 
@@ -49,6 +50,7 @@ public class Story {
             }
 
             inventoryInputStream.close();
+            Log.d("OPTIONS", this.story.toString());
 
         } catch(Exception e) {
             e.printStackTrace();
@@ -62,16 +64,29 @@ public class Story {
     public void setCondition(String condition, boolean value) {
         this.story.put(condition, value ? 1 : 0);
     }
+    public void setCondition(String condition, int value) {
+        this.story.put(condition, value);
+    }
 
-    public void updateStory(JSONArray optionsToChange) {
+    public void updateStory(JSONArray optionsToChange, Inventory inventory) {
         try
         {
 //            Log.d("STORY", this.story.toString());
+
 
             for (int i = 0; i < optionsToChange.length(); i++)
             {
 
                 String option = (String) optionsToChange.get(i);
+//                Log.d("OPTION", option);
+//                Log.d("OPTION", String.valueOf(this.story.toString()));
+                if (option.equals("inAFight")) {
+                    if (this.story.get("inAFight") == 0) {
+                        Random r = new Random();
+                        int life = r.nextInt(10) + 1;
+                        this.story.put("ennemyLife", life);
+                    }
+                }
 
                 // Si aucune valeur n'est précisé <nomDeLaValeur>:<valeur>
                 if (!option.contains(":"))
@@ -90,12 +105,38 @@ public class Story {
                         case '-':
                             this.story.put(tmp[0], this.story.get(tmp[0]) - Integer.parseInt(tmp[1].substring(1)));
                             break;
+                        case '?':
+                            String modificator = tmp[1].substring(1);
+                            int attack = 0;
+                            int defense = 0;
+                            switch (modificator) {
+                                case "sword":
+                                    attack = inventory.getSwordObject().getInt("attack");
+                                    defense = this.story.get("ennemyDefense");
+                                    this.story.put(tmp[0], this.story.get(tmp[0]) - (attack - defense));
+                                    break;
+                                case "shield":
+                                    attack = this.story.get("ennemyAttack");
+                                    defense = inventory.getShieldObject().getInt("defense");
+                                    this.story.put(tmp[0], this.story.get(tmp[0]) - (attack - defense));
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
                         default:
                             this.story.put(tmp[0], Integer.parseInt(tmp[1]));
                             break;
                     }
                 }
             }
+
+
+            if (this.story.get("ennemyLife") <= 0 && this.story.get("inAFight") == 1) {
+                this.story.put("killedAnEnnemy", 1);
+            }
+
+
 //            Log.d("STORY", this.story.toString());
         }
         catch (JSONException jse) {

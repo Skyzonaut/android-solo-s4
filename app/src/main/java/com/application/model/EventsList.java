@@ -3,7 +3,6 @@ package com.application.model;
 import android.content.Context;
 import android.util.Log;
 
-import com.application.interfaces.InterfaceModel;
 import com.application.jeu.R;
 
 import org.json.JSONArray;
@@ -18,7 +17,7 @@ import java.io.StringWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 
-public class EventsList implements InterfaceModel {
+public class EventsList {
 
     private final ArrayList<Event> eventsList = new ArrayList<>();
 
@@ -49,10 +48,6 @@ public class EventsList implements InterfaceModel {
         }
     }
 
-    @Override
-    public void notifierVue() {
-
-    }
 
     public int length() {
         return this.eventsList.size();
@@ -60,5 +55,14 @@ public class EventsList implements InterfaceModel {
 
     public Event get(int i) {
         return this.eventsList.get(i);
+    }
+
+    public Event getByName(String name) {
+        for (Event e : this.eventsList) {
+            if (e.getName().equals(name)) {
+                return e;
+            }
+        }
+        return null;
     }
 }
